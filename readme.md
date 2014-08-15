@@ -1,0 +1,1 @@
+Run the program from the command line. You will be prompted to enter a file name. The program will build a Markov chain based on the contents of this file. Then, the program will prompt you to enter the number of words you wish the program to output. After displaying the newly generated, Markovian output, you will have the option to continue or quit.
