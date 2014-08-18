@@ -8,20 +8,20 @@ class Markov(object):
     def __init__(self, open_file, ngram):
         self.chain = {}
         self.open_file = open_file
-        self.words = self.get_words()
+        self.words = self._get_words()
         self.word_count = len(self.words)
         self.ngram = ngram
-        self.build_chain()
+        self._build_chain()
     
     # Gets words from source file
-    def get_words(self):
+    def _get_words(self):
         self.open_file.seek(0)
         file_data = self.open_file.read()
         words = file_data.split()
         return words
 
     # Creates tuples of length 'length' from the word array
-    def get_adjacent_words(self):
+    def _get_adjacent_words(self):
         if self.word_count < self.ngram:
             return
         for w in range(self.word_count - self.ngram + 1):
@@ -31,8 +31,8 @@ class Markov(object):
             yield tuple(adjacent_words)
 
     # Builds a Markov chain based on adjacent words
-    def build_chain(self):
-        for adjacent_words in self.get_adjacent_words():
+    def _build_chain(self):
+        for adjacent_words in self._get_adjacent_words():
             key = adjacent_words[:-1]
             if key in self.chain:
                 self.chain[key].append(adjacent_words[-1])
